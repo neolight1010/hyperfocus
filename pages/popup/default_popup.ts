@@ -1,6 +1,6 @@
-function onSubmit(e) {
+function onTimeFormSubmit(e: Event) {
   const storage = browser.storage.sync;
-  const data = new FormData(e.target);
+  const data = new FormData(e.target as HTMLFormElement);
 
   const startTimeString = `${data.get("start-hour")}:${data.get(
     "start-minute"
@@ -14,15 +14,15 @@ function onSubmit(e) {
   let isInvalid = false;
 
   if (startTime.toString() === "Invalid Date") {
-    document.getElementById("start-hour").classList.add("uk-form-danger");
-    document.getElementById("start-minute").classList.add("uk-form-danger");
+    document.getElementById("start-hour")!.classList.add("uk-form-danger");
+    document.getElementById("start-minute")!.classList.add("uk-form-danger");
 
     isInvalid = true;
   }
 
   if (endTime.toString() === "Invalid Date") {
-    document.getElementById("end-hour").classList.add("uk-form-danger");
-    document.getElementById("end-minute").classList.add("uk-form-danger");
+    document.getElementById("end-hour")!.classList.add("uk-form-danger");
+    document.getElementById("end-minute")!.classList.add("uk-form-danger");
 
     isInvalid = true;
   }
@@ -42,5 +42,5 @@ function onSubmit(e) {
   return true;
 }
 
-const timeForm = document.getElementById("time-form");
-timeForm.addEventListener("submit", onSubmit);
+const timeForm = document.getElementById("time-form")!;
+timeForm.addEventListener("submit", onTimeFormSubmit);

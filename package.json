@@ -1,0 +1,17 @@
+{
+  "name": "hyperfocus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Disable distracting websites. Enter full focus.",
+  "scripts": {
+    "build": "tsc && node copy-assets.mjs",
+    "typecheck": "tsc --noEmit",
+    "dev": "web-ext run --source-dir build",
+    "lint": "web-ext lint --source-dir build"
+  },
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.0",
+    "typescript": "^5.4.0",
+    "web-ext": "^8.0.0"
+  }
+}
