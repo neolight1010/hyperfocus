@@ -1,4 +1,4 @@
-function onBeforeRequest(_details: browser.webRequest._OnBeforeRequestDetails) {
+function onBeforeRequest(_details) {
   console.log("Entering blocked page!");
 
   return {
@@ -6,11 +6,11 @@ function onBeforeRequest(_details: browser.webRequest._OnBeforeRequestDetails) {
   };
 }
 
-function allUrlsInDomain(domain: string) {
+function allUrlsInDomain(domain) {
   return `*://${domain}/*`;
 }
 
-function dateAsTimeSeconds(date: Date) {
+function dateAsTimeSeconds(date) {
   /*
    * Returns the time as seconds after midnight. Ignores the date.
    */
@@ -63,7 +63,7 @@ getBlockedTimes().then((timeData) => {
 
   if (isNowBlocked) {
     getBlockedWebsites().then((data) => {
-      const blocked = (data.blockedSites as string[]).map((url) => allUrlsInDomain(url));
+      const blocked = data.blockedSites.map((url) => allUrlsInDomain(url));
 
       browser.webRequest.onBeforeRequest.addListener(
         onBeforeRequest,
